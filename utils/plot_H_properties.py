@@ -32,8 +32,11 @@ def main ():
     if args.block_size is not None:
         print (data.shape[2]/args.block_size)
 
+    print ('First matrix')
     print (data[:,:,0])
+    print ('Second matrix')
     print (data[:,:,1])
+    print ('Last matrix')
     print (data[:,:,-1])
 
     iq_power_0 = 10*np.log10 (np.power (data[0,0,:].real,2.0) + np.power (data[0,0,:].imag,2.0))

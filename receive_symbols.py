@@ -92,6 +92,12 @@ def main ():
             channels = sym_receiver.mimo_2x2_sync_and_decode (gain=args.gain,check_needed=args.check,correct_phase=args.correct_phase,pilot_id=args.pilot_id,save_channels=args.save_channels,count=args.frames)
             if args.save_channels is not None and channels is not None:
                 print ('Export {:d} blocks of {:d} channels'.format (len (channels),sym_receiver.pilot_seq_length))
+                print ('First matrix')
+                print (channels[0][:,:,0])
+                print ('Second matrix')
+                print (channels[0][:,:,1])
+                print ('Last matrix')
+                print (channels[-1][:,:,-1])
                 with file (args.save_channels,'w') as f:
                     for k,block in enumerate (channels):
                         f.write ('# Block {:d}\n'.format (k))
