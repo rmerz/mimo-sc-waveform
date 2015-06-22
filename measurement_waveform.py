@@ -286,10 +286,11 @@ class measurementSymbols:
         # Verify one last time by moving at the beginning of the preamble
         offset = offset + id_max - sync_mask.shape[1]/2
         rx_conv = np.abs (np.correlate (received_symbols[offset:offset+sync_mask.shape[1]]**2,sync_mask[0]**2,mode='same'))
-        if np.argmax (rx_conv) == sync_mask.shape[1]/2:
+        verification_id = np.argmax (rx_conv)
+        if  verification_id == sync_mask.shape[1]/2:
             print ('Sync. confirmed, offset: ({:d})'.format (offset))
         else:
-            print ('Sync. verification failed')
+            print ('Sync. verification failed ({:d})'.format (verification_id))
             return None
         # Now looking for SFD
         sfd_check_count = 0
