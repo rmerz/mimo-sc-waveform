@@ -43,7 +43,12 @@ def main ():
     iq_power_1 = 10*np.log10 (np.power (data[1,1,:].real,2.0) + np.power (data[1,1,:].imag,2.0))
     print ('Median IQ power:',np.median (iq_power_0)-args.gain_offset,np.median (iq_power_1)-args.gain_offset)
 
-    get_median_CN (data)
+    cn_timeseries = get_median_CN (data)
+
+    ax = figure ().add_subplot (111)
+    ax.plot (cn_timeseries)
+    ax.grid (True)
+    tight_layout ()
 
     r = acf (np.abs (data[0,0,200::256])**2,unbiased=True,fft=True)
     r_b = acf (np.abs (data[0,0,512:768])**2,unbiased=True,fft=True)
