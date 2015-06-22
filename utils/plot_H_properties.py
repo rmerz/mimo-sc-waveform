@@ -3,6 +3,7 @@ from __future__ import print_function
 import argparse
 import numpy as np
 from statsmodels.tsa.stattools import acf
+import pandas as pd
 from matplotlib.pylab import figure, tight_layout, show, savefig
 
 def get_args ():
@@ -47,6 +48,7 @@ def main ():
 
     ax = figure ().add_subplot (111)
     ax.plot (cn_timeseries)
+    ax.plot (pd.rolling_median (cn_timeseries,window=len (cn_timeseries)*0.05),color='r',lw=2.0)
     ax.grid (True)
     tight_layout ()
 
