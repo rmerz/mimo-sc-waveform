@@ -52,8 +52,8 @@ def main ():
     ax.grid (True)
     tight_layout ()
 
-    r = acf (np.abs (data[0,0,200::256])**2,unbiased=True,fft=True)
-    r_b = acf (np.abs (data[0,0,512:768])**2,unbiased=True,fft=True)
+    r = acf (np.abs (data[0,0,200::256])**2,unbiased=True,nlags=200,fft=True)
+    r_b = acf (np.abs (data[0,0,512:768])**2,unbiased=True,nlags=200,fft=True)
     ax = figure ().add_subplot (111)
     ax.plot (r)
     ax.plot (r_b)
